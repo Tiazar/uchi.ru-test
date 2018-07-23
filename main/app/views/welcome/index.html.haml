@@ -1,0 +1,14 @@
+.container
+  .col-lg-4
+    = form_tag contributors_path, method: 'get' do
+      .row.column
+        = label_tag "Repo name", :repo
+        = text_field_tag :repo, nil, required: true, class: "form-control"
+      .row.column
+        = label_tag "Owner", :owner
+        = text_field_tag :owner, nil, required: true, class: "form-control"
+      .row.column
+        = label_tag "Count number(max 30)", :count
+        = number_field_tag :count, nil, required: true, class: "form-control", min:"1", step:"1"
+      .row.column
+        = submit_tag 'Show'
