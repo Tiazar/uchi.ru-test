@@ -6,9 +6,20 @@ class WelcomeController < ApplicationController
   end
 
   def contributors
-    # HTTParty.get("https://www.tinkoff.ru/api/v1/currency_rates/")
-    puts 'test'
-    contrubutors_res =  HTTParty.get("http://#{request.host}:4000/repo=#{@permitted_params[:repo]}&owner=#{@permitted_params[:owner]}&count=#{@permitted_params[:count]}")
+    @errors = []
+    contrubutors_res =  HTTParty.get("http://#{request.host}:4000/contributors/show/#{@permitted_params[:owner]}/#{@permitted_params[:repo]}/#{@permitted_params[:count]}")
+    if contrubutors_res.success?
+      json = JSON.parse(contrubutors_res.body)
+      if json["contributors"]
+        @contributors = json["contributors"]
+      else
+        @errors = json["errors"]
+      end
+    else
+      @errors = {errors: "Can`t resolve service" }
+    end
+  rescue => e
+    @errors << [e.class.name, e.message]
   end
 
   protected

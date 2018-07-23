@@ -1,0 +1,7 @@
+- if @errors.empty?
+  = @contributors.count
+- else
+  %ul
+    - @errors.each do |msg|
+      %li
+        = msg
