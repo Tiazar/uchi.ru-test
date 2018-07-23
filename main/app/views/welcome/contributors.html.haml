@@ -1,7 +1,19 @@
-- if @errors.empty?
-  = @contributors.count
-- else
-  %ul
-    - @errors.each do |msg|
-      %li
-        = msg
+.container
+  .row
+    %h1
+      = "Contributors repository: \"#{@permitted_params[:repo]}\""
+    .col-md-4
+      - if @errors.empty?
+        %ul
+          - @contributors.each do |contributor|
+            %li
+              %p
+                = contributor["login"]
+              %p
+                = link_to "Show diplom", diplom_path(login: contributor["login"])
+
+      - else
+        %ul
+          - @errors.each do |msg|
+            %li
+              = msg
