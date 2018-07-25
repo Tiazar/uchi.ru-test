@@ -31,6 +31,5 @@
 /tmp
 .idea
 /config/database.yml
-/config/secrets.yml
 config/database.yml
 /coverage
