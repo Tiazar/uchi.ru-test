@@ -1,1 +1,25 @@
-= @diplom
+-#= @diplom
+.container
+  .row
+    %h1
+      Contributor diploma
+  %p
+    %b Name:
+    = " #{@diplom["name"]}"
+  %span
+    = image_tag(@diplom["avatar_url"], width: '75', height: '75')
+  %p
+    %b Login:
+    = " #{@diplom["login"]}"
+  %p
+    %b Company:
+    = " #{@diplom["company"]}"
+  %p
+    %b Location:
+    = " #{@diplom["location"]}"
+  %p
+    %b Github page:
+    = link_to(@diplom["html_url"])
+  %p
+    %b Registration date:
+    = " #{Date.parse(@diplom["created_at"]).strftime('%d.%m.%Y')}"
