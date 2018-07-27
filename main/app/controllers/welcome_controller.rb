@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
       if json["contributors"]
         @contributors = json["contributors"]
       else
-        @errors = json["errors"]
+        @errors = {errors: json["errors"] }
       end
     else
       @errors = {errors: "Can`t resolve service" }

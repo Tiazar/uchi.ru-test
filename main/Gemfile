@@ -44,6 +44,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'rspec-rails'
+  gem 'rspec-wait'
+  gem 'webmock'
+  gem 'cucumber'
 end
 
 group :development do
