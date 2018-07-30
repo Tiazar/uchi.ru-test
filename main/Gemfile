@@ -46,7 +46,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-wait'
   gem 'webmock'
-  gem 'cucumber'
 end
 
 group :development do
