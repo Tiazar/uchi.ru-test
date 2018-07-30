@@ -10,7 +10,7 @@
               %p
                 = contributor["login"]
               %p
-                = link_to "Show diplom", diplom_path(login: contributor["login"])
+                = link_to "Show diploma", diplom_path(login: contributor["login"]), class: "diploma_link"
 
       - else
         %ul

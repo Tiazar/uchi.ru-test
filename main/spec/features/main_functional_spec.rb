@@ -53,6 +53,7 @@ describe "Welcome pages" do
     }
 
     before { visit root_path }
+
     it "should working" do
       fill_in_and_click(contributors)
       expect(page).to have_selector('li', count: 2)
@@ -61,6 +62,17 @@ describe "Welcome pages" do
     it "should not working" do
       fill_in_and_click({"errors"=>"custom error"})
       expect(page).to have_content("custom error")
+    end
+
+    it "should be pdf" do
+      fill_in_and_click(contributors)
+      test_pdf = File.open("spec/features/test_diploma.pdf")
+      stub_request(:get, /www.example.com:5000/).
+          with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+          to_return(status: 200, body: test_pdf, headers: {})
+
+      first(".diploma_link").click
+      expect(page.response_headers).to have_content("application/pdf")
     end
 
   end
